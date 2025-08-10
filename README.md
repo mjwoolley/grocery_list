@@ -39,10 +39,24 @@ A simple shared grocery list app built with React, TypeScript, and Firebase.
 ## Available Scripts
 
 - `npm start` - Runs the development server
-- `npm build` - Builds the app for production
+- `npm run build` - Builds the app for production  
 - `npm test` - Runs the test suite
 - `npm run lint` - Runs ESLint
 - `npm run typecheck` - Runs TypeScript type checking
+
+## Deployment
+
+1. Build the production version:
+   ```bash
+   npm run build
+   ```
+
+2. Deploy to Firebase Hosting:
+   ```bash
+   firebase deploy --only hosting
+   ```
+
+3. Your app will be available at: `https://grocery-list-c483c.web.app`
 
 ## Architecture
 

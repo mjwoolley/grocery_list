@@ -13,8 +13,7 @@ import {
 } from '@mui/material';
 import {
   Visibility,
-  VisibilityOff,
-  ShoppingCart
+  VisibilityOff
 } from '@mui/icons-material';
 import { useAuth } from '../hooks/useAuth';
 
@@ -61,19 +60,16 @@ const AuthForm: React.FC = () => {
           p: 4,
           maxWidth: 400,
           width: '100%',
-          textAlign: 'center'
+          textAlign: 'center',
+          borderRadius: 2
         }}
       >
-        <Box sx={{ mb: 3 }}>
-          <ShoppingCart 
-            sx={{ 
-              fontSize: 48, 
-              color: 'primary.main', 
-              mb: 1 
-            }} 
-          />
-          <Typography variant="h4" component="h1" gutterBottom>
-            Grocery List
+        <Box sx={{ mb: 4 }}>
+          <Typography variant="h4" sx={{ mb: 1, fontWeight: 600 }}>
+            🛒 Grocery
+          </Typography>
+          <Typography variant="h4" sx={{ fontWeight: 600 }}>
+            List
           </Typography>
         </Box>
 
@@ -88,6 +84,8 @@ const AuthForm: React.FC = () => {
             required
             autoComplete="email"
             autoFocus
+            variant="outlined"
+            sx={{ mb: 2 }}
           />
           
           <TextField
@@ -99,12 +97,15 @@ const AuthForm: React.FC = () => {
             margin="normal"
             required
             autoComplete={isSignUp ? 'new-password' : 'current-password'}
+            variant="outlined"
+            sx={{ mb: 2 }}
             InputProps={{
               endAdornment: (
                 <InputAdornment position="end">
                   <IconButton
                     onClick={() => setShowPassword(!showPassword)}
                     edge="end"
+                    size="small"
                   >
                     {showPassword ? <VisibilityOff /> : <Visibility />}
                   </IconButton>
