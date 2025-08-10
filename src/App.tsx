@@ -1,9 +1,11 @@
 import React from 'react';
 import { ThemeProvider, createTheme } from '@mui/material/styles';
 import CssBaseline from '@mui/material/CssBaseline';
-import Container from '@mui/material/Container';
+import CircularProgress from '@mui/material/CircularProgress';
 import Box from '@mui/material/Box';
-import Typography from '@mui/material/Typography';
+import { useAuth } from './hooks/useAuth';
+import AuthForm from './components/AuthForm';
+import GroceryList from './components/GroceryList';
 
 const theme = createTheme({
   palette: {
@@ -14,37 +16,55 @@ const theme = createTheme({
     secondary: {
       main: '#dc004e',
     },
+    background: {
+      default: '#f5f5f5',
+    },
   },
   typography: {
     h4: {
       fontWeight: 600,
     },
+    h6: {
+      fontWeight: 500,
+    },
+  },
+  components: {
+    MuiButton: {
+      styleOverrides: {
+        root: {
+          textTransform: 'none',
+          fontWeight: 500,
+        },
+      },
+    },
   },
 });
 
 function App() {
-  return (
-    <ThemeProvider theme={theme}>
-      <CssBaseline />
-      <Container maxWidth="sm">
+  const { user, loading } = useAuth();
+
+  if (loading) {
+    return (
+      <ThemeProvider theme={theme}>
+        <CssBaseline />
         <Box
           sx={{
             minHeight: '100vh',
             display: 'flex',
-            flexDirection: 'column',
             alignItems: 'center',
             justifyContent: 'center',
-            py: 4,
           }}
         >
-          <Typography variant="h4" component="h1" gutterBottom>
-            Grocery List
-          </Typography>
-          <Typography variant="body1" color="text.secondary">
-            Coming soon...
-          </Typography>
+          <CircularProgress />
         </Box>
-      </Container>
+      </ThemeProvider>
+    );
+  }
+
+  return (
+    <ThemeProvider theme={theme}>
+      <CssBaseline />
+      {user ? <GroceryList /> : <AuthForm />}
     </ThemeProvider>
   );
 }
