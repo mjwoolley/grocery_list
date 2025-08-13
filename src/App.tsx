@@ -6,6 +6,8 @@ import Box from '@mui/material/Box';
 import { useAuth } from './hooks/useAuth';
 import AuthForm from './components/AuthForm';
 import GroceryList from './components/GroceryList';
+import InstallPrompt from './components/InstallPrompt';
+import OfflineIndicator from './components/OfflineIndicator';
 
 const theme = createTheme({
   palette: {
@@ -103,7 +105,9 @@ function App() {
   return (
     <ThemeProvider theme={theme}>
       <CssBaseline />
+      <OfflineIndicator />
       {user ? <GroceryList /> : <AuthForm />}
+      <InstallPrompt />
     </ThemeProvider>
   );
 }
